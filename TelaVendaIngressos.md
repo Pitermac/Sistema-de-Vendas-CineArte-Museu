@@ -11,7 +11,7 @@ int main() {
   float precoespe = 0.0;
 
   printf("\n******** Bem vindo ao CineArte Museu ********\n");
-  
+
   printf("\nSistema de Compra de Ingressos\n");
 
     while (1) {
@@ -30,31 +30,32 @@ int main() {
                 printf("\nQuantos ingressos comuns voce deseja comprar? ");
                 scanf("%d", &ingressocomum);
                 break;
-          
+
             case 2:
                 printf("\nQuantos ingressos meia voce deseja comprar? ");
                 scanf("%d", &ingressomeia);
                 break;
-          
-            case 3: 
+
+            case 3:
                 printf("\nQuantos ingressos especiais voce deseja comprar?");
+                scanf("%d", &ingressoespe);
           break;
-          
+
           case 4:
                 totalingresso = ingressocomum + ingressomeia + ingressoespe;
-                
+
       if (totalingresso > 0) {
       float precototal = (ingressocomum * precomum) + (ingressomeia * precomeia) + (ingressoespe * precoespe);
-            
-    printf("\nResumo da compra:\n");
-        
-    printf("Ingressos comuns: %d\n", ingressocomum);
+
+    printf("\n******** Resumo da compra: ********\n");
+
+    printf("\nIngressos comuns: %d\n", ingressocomum);
     printf("Ingressos meia: %d\n", ingressomeia);
     printf ("Ingressos especiais: %d\n", ingressoespe);
-        
-    printf("\n Total de Ingressos: %d\n", totalingresso);
-    
-    printf("\n Total a pagar: R$%.2f\n", precototal);
+
+    printf("\nTotal de Ingressos: %d\n", totalingresso);
+
+    printf("Total a pagar: R$%.2f\n", precototal);
                 } else {
                     printf("Nenhum ingresso foi selecionado.\n");
                 }
