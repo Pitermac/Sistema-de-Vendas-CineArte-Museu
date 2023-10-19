@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura para armazenar detalhes do ingresso
+struct Ingresso {
+    char nome[100];
+    char cpf[12];
+    char telefone[15];
+    double preco;
+};
+
+// Estrutura para armazenar detalhes do cartão
+struct Cartao {
+    char numero[20];
+    char codigoSeguranca[4];
+};
+
+int main() {
+    int totalIngressos = 0;
+    double valorTotal = 0;
+    int numeroIngresso = 1001; // Número inicial do ingresso
+
+    // Arrays para armazenar os detalhes de compra e pagamento
+    struct Ingresso ingressosComprados[100];
+    struct Cartao cartaoPagamento;
+
+printf ("****** Bem vindo ao CineArte Museu ******\n");
+  printf ("\nDo menu abaixo, escolha a opcao que melhor o (a) atende, e aproveite a exposicao!\n");
+  
+    while (1) {
+        int opcao;
+        int quantidade;
+
+        printf("\nMenu de Opções:\n");
+        printf("\n1. Ingresso Inteira - R$40.00\n");
+        printf("2. Ingresso Meia - R$20.00\n");
+        printf("3. Ingresso Especial - R$0.00\n");
+        printf("4. Encerrar Compra\n");
+        
+      printf("\nEscolha uma das opcoes desejadas para seguir sua compra: ");
+      
+      scanf("%d", &opcao);
+
+        if (opcao == 4) {
+            break; // Encerrar a compra
+        }
+
+        if (opcao < 1 || opcao > 3) {
+            printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+            continue;
+        }
+
+        printf("\nQuantos ingressos deseja comprar? ");
+        scanf("%d", &quantidade);
+
+        double preco;
+        switch (opcao) {
+            case 1:
+                preco = 40.0;
+                break;
+            case 2:
+                preco = 20.0;
+                break;
+            case 3:
+                preco = 0.0;
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0; i < quantidade; i++) {
+            struct Ingresso ingresso;
+            printf("\nDigite o nome: ");
+            scanf("%s", ingresso.nome);
+            printf("Digite o CPF: ");
+            scanf("%s", ingresso.cpf);
+            printf("Digite o telefone: ");
+            scanf("%s", ingresso.telefone);
+
+            ingresso.preco = preco;
+            ingressosComprados[totalIngressos] = ingresso;
+
+            valorTotal += preco;
+            totalIngressos++;
+
+            printf("\nIngresso %d comprado.\n", totalIngressos);
+
+            numeroIngresso++;
+        }
+    }
+
+    printf("\n****** Resumo da Compra******\n");
+    printf("\nNúmero de Ingressos: %d\n", totalIngressos);
+    printf("Valor Total: R$%.2f\n", valorTotal);
+
+    // Exibir os detalhes de cada ingresso comprado
+    for (int i = 0; i < totalIngressos; i++) {
+        printf("\nDetalhes do Ingresso %d:\n", i + 1);
+        printf("Nome: %s\n", ingressosComprados[i].nome);
+        printf("CPF: %s\n", ingressosComprados[i].cpf);
+        printf("Telefone: %s\n", ingressosComprados[i].telefone);
+        printf("Preço: R$%.2f\n", ingressosComprados[i].preco);
+    }
+
+    // Coletar dados do cartão de pagamento
+    printf("\nQual sera a forma de Pagamento? (D - Debito ou C - Credito): ");
+    char formaPagamento[20];
+    scanf("%s", formaPagamento);
+
+    if (strcmp(formaPagamento, "D") == 0 || strcmp(formaPagamento, "C") == 0) {
+        printf("Digite o numero do cartao: ");
+        scanf("%s", cartaoPagamento.numero);
+        printf("Digite o codigo de segurança (CVV): ");
+        scanf("%s", cartaoPagamento.codigoSeguranca);
+
+        printf("\nPagamento Efetuado com sucesso!\n");
+    } else {
+        printf("Forma de pagamento invalida. Infelizmente sua compra foi cancelada.\n");
+    }
+
+    printf("Compra encerrada. Obrigado por comprar!\n");
+
+    return 0;
+}
